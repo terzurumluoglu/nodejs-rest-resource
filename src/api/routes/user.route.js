@@ -4,6 +4,6 @@ const { getAllUsers, getUserById } = require('../controllers/user.controller');
 const { authorize } = require('../middleware/authorize');
 
 router.route('/').get(authorize, getAllUsers);
-router.route('/:id').get(getUserById);
+router.route('/:email').get(getUserById);
 
 module.exports = router;
