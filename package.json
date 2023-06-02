@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-rest-resource",
+  "version": "1.0.0",
+  "description": "nodejs-rest-resource is protected by nodejs-rest",
+  "main": "index.js",
+  "scripts": {
+    "start": "ENVIRONMENT=development nodemon index",
+    "dev": "ENVIRONMENT=development node index",
+    "prod": "ENVIRONMENT=production node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terzurumluoglu/nodejs-rest-resource.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terzurumluoglu/nodejs-rest-resource/issues"
+  },
+  "homepage": "https://github.com/terzurumluoglu/nodejs-rest-resource#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^4.13.0",
+    "nodemailer": "^6.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
