@@ -1,5 +1,18 @@
-const { userMock } = require('../../mock');
+const { getUserCollection } = require('../config/db');
 
-exports.getAllUser = () => userMock;
+const getAllUser = async () => {
+    const users = (await getUserCollection().find({}).toArray()).map(u => {
+        const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
+        return user;
+    });
+    return users;
+} 
 
-exports.getUserById = (id) => userMock.find(user => user.id === id);
+const getUserById = async (email) => {
+    const u = await getUserCollection().findOne({ email });
+    const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
+    return user;
+}
+
+module.exports = { getAllUser, getUserById };
+

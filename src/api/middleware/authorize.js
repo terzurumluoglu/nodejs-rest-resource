@@ -24,8 +24,7 @@ exports.authorize = asyncHandler(async (req, res, next) => {
     const token = splitted[1];
 
     try {
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decodedToken);
+        jwt.verify(token, process.env.JWT_SECRET);
         next();
     } catch (error) {
         return next(new ErrorResponse('Unauthorized', 401));

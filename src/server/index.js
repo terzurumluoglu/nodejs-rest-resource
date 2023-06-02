@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const { basePath, environments } = require('../constants');
-const { authorize } = require('../api/middleware/authorize');
+const { connectDatabase } = require('../api/config/db');
 
 const server = express();
 
@@ -14,6 +14,7 @@ if (process.env.ENVIRONMENT === environments.production) {
 
 dotenv.config({ path: environmentPath });
 
+connectDatabase();
 const PORT = process.env.PORT;
 
 server.use(express.json());
