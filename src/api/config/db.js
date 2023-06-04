@@ -28,5 +28,6 @@ const getDatabase = () => {
 }
 
 const getUserCollection = () => getDatabase().collection('users');
+const getPostCollection = () => getDatabase().collection('posts');
 
-module.exports = { connectDatabase, getDatabase, getUserCollection };
+module.exports = { connectDatabase, getDatabase, getPostCollection, getUserCollection };
