@@ -1,6 +1,6 @@
 const { getUserCollection } = require('../config/db');
 
-const getAllUser = async () => {
+const getAllUsers = async () => {
     const users = (await getUserCollection().find({}).toArray()).map(u => {
         const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
         return user;
@@ -14,5 +14,5 @@ const getUserById = async (email) => {
     return user;
 }
 
-module.exports = { getAllUser, getUserById };
+module.exports = { getAllUsers, getUserById };
 

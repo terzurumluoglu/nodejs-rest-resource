@@ -1,10 +1,10 @@
-const { getAllUser, getUserById } = require('../services/user.service');
+const { getAllUsers, getUserById } = require('../services/user.service');
 
 // @desc   Get All Users
 // @route  GET /users
 // @access Private
 exports.getAllUsers = async (req, res, next) => {
-    const users = await getAllUser();
+    const users = await getAllUsers();
     res.status(200).send(users);
 };
 
