@@ -1,19 +1,19 @@
-const { getAllUsers, getUserById } = require('../services/user.service');
+const { deleteOne, find, findOne } = require('../services/user.service');
 
 // @desc   Get All Users
 // @route  GET /users
 // @access Private
-exports.getAllUsers = async (req, res, next) => {
-    const users = await getAllUsers();
+exports.find = async (req, res, next) => {
+    const users = await find();
     res.status(200).send(users);
 };
 
 // @desc   Get UserById
 // @route  GET /users/:id
 // @access Private
-exports.getUserById = async (req, res, next) => {
-    const { email } = req.params;
-    const user = await getUserById(email);
+exports.findOne = async (req, res, next) => {
+    const { params } = req;
+    const user = await findOne(params);
     if (!user) {
         res.status(404).send('Not Found');
     }
