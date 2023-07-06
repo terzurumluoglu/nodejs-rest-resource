@@ -1,5 +1,5 @@
 const { server } = require('./src/server');
-const userRoute = require('./src/api/routes/user.route');
+const { postRoute, userRoute } = require('./src/api/routes');
 const { errorHandler } = require('./src/api/middleware/errorHandler');
 
 server.get('/', (req, res, next) => {
@@ -10,4 +10,5 @@ server.get('/', (req, res, next) => {
 });
 
 server.use('/users', userRoute);
+server.use('/posts', postRoute);
 server.use(errorHandler);

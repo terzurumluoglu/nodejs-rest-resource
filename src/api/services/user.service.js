@@ -1,18 +1,25 @@
-const { getUserCollection } = require('../config/db');
+const { getDatabase } = require('../config/db');
+const { collections } = require('../../constants');
+const collection = getDatabase().collection(collections.users);
 
-const getAllUser = async () => {
-    const users = (await getUserCollection().find({}).toArray()).map(u => {
-        const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
+class UserService {
+    
+    find = async () => {
+        const users = (await collection.find({}).toArray());
+        return users.map(u => {
+            const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
+            return user;
+        });
+    } 
+    
+    findOne = async (params) => {
+        const foundUser = await collection.findOne(params);
+        const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = foundUser;
         return user;
-    });
-    return users;
-} 
-
-const getUserById = async (email) => {
-    const u = await getUserCollection().findOne({ email });
-    const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
-    return user;
+    }
+    
+    deleteOne = (param) => collection.deleteOne(param);
+    
 }
-
-module.exports = { getAllUser, getUserById };
+module.exports = new UserService();
 
