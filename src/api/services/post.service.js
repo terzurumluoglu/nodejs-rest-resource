@@ -1,8 +1,16 @@
-const { getPostCollection } = require('../config/db');
+const { getDatabase } = require('../config/db');
+const { collections } = require('../../constants');
+const collection = getDatabase().collection(collections.posts);
 
-const getAllPosts = async () => {
-    const posts = (await getPostCollection().find({}).toArray());
-    return posts;
+class PostService {
+
+    find = () => collection.find({}).toArray();
+    
+    findOne = (param) => collection.findOne(param);
+    
+    save = (post) => collection.insertOne(post);
+
+    deleteOne = (param) => collection.deleteOne(param);
 }
 
-module.exports = { getAllPosts };
+module.exports = new PostService();
