@@ -1,4 +1,5 @@
-const { deleteOne, find, findOne } = require('../services/user.service');
+const { find, findOne } = require('../services/user.service');
+const ErrorResponse = require('../utils/ErrorResponse');
 
 // @desc   Get All Users
 // @route  GET /users
@@ -13,9 +14,15 @@ exports.find = async (req, res, next) => {
 // @access Private
 exports.findOne = async (req, res, next) => {
     const { params } = req;
-    const user = await findOne(params);
-    if (!user) {
-        res.status(404).send('Not Found');
+    const data = await findOne(params);
+    if (!data) {
+        return next(new ErrorResponse('Not Found', 404));
     }
-    res.status(200).send(user);
+    res.status(200).send({
+        success: true,
+        result: {
+            message: 'Password changed successfully',
+            data,
+        },
+    });
 };

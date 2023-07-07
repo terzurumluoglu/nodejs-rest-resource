@@ -20,6 +20,10 @@ const PORT = process.env.PORT;
 server.use(express.json());
 server.use(cookieParser());
 
+server.get('/', (req, res) => {
+    res.send(`<h1>API Works</h1>`)
+});
+
 server.listen(PORT, () => {
     console.log(process.env.MESSAGE.split('{{PORT}}').join(PORT));
 });
