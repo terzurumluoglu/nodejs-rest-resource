@@ -4,8 +4,8 @@ const collection = getDatabase().collection(collections.users);
 
 class UserService {
     
-    find = async () => {
-        const users = (await collection.find({}).toArray());
+    find = async (query) => {
+        const users = (await collection.find(query).toArray());
         return users.map(u => {
             const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = u;
             return user;
