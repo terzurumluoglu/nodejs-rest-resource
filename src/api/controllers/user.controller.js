@@ -5,7 +5,8 @@ const ErrorResponse = require('../utils/ErrorResponse');
 // @route  GET /users
 // @access Private
 exports.find = async (req, res, next) => {
-    const users = await find();
+    const query = req.query || {};
+    const users = await find(query);
     res.status(200).send(users);
 };
 
