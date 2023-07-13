@@ -60,7 +60,7 @@ exports.deleteOne = async (req, res, next) => {
     let { params } = req;
     params = convertIdToObjectId(params);
     const data = await deleteOne(params);
-    res.status(200).send({
+    res.status(204).send({
         success: true,
         result: {
             message: 'The Post was deleted successfully',
