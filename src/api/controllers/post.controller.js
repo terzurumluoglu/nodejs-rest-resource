@@ -20,8 +20,8 @@ exports.find = async (req, res, next) => {
     });
 };
 
-// @desc   Get Posts By Filter
-// @route  GET /post(s)
+// @desc   Get Post By Filter
+// @route  GET /post
 // @access Public
 exports.findOne = async (req, res, next) => {
     let { params } = req;
@@ -42,8 +42,8 @@ exports.findOne = async (req, res, next) => {
 // @route  POST /posts
 // @access Public
 exports.save = async (req, res, next) => {
-    const { title, content } = req.body;
-    const data = await save({ title, content });
+    const { title, content, tags } = req.body;
+    const data = await save({ title, content, tags });
     res.status(200).send({
         success: true,
         result: {
