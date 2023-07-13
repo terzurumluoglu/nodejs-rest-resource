@@ -57,7 +57,7 @@ class PostService {
         const slug = slugify(title);
         const post = await this.findOne({ slug });
         if (!post) {
-            return slug;   
+            return slug;
         }
         const slugCount = post.slugCount + 1;
         await this.updateOne({ slug }, { $inc: { slugCount: 1 } });

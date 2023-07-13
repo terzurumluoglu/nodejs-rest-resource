@@ -15,7 +15,7 @@ class TagService {
             };
         });
     }
-        
+
     /**
      * generateTagSearchObject
      * @param tag // string
