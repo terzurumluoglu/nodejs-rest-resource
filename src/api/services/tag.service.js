@@ -15,6 +15,15 @@ class TagService {
             };
         });
     }
+        
+    /**
+     * generateTagSearchObject
+     * @param tag // string
+     * @returns proper object for searching in Mongodb
+     */
+    generateTagSearchObject = (tag) => {
+        return { tags: { $elemMatch: { slug: tag } } };
+    };
 };
 
 module.exports = new TagService();
