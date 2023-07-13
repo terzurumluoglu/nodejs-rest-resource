@@ -12,14 +12,14 @@ class PostService {
      * @returns Posts as Array
      */
     find = (query) => collection.find(query).toArray();
-    
+
     /**
      * findOne
      * @param param 
      * @returns Post as Object
      */
     findOne = (param) => collection.findOne(param);
-    
+
     /**
      * save
      * @param post
@@ -55,10 +55,13 @@ class PostService {
      */
     #generateSlug = async (title) => {
         const slug = slugify(title);
-        const post = await this.findOne({slug});
-        const slugCount = post ? post.slugCount + 1 : 0;
-        await this.updateOne({ slug }, { $set: { slugCount } });
-        return !!slugCount ? `${slug}-${slugCount}` : slug;
+        const post = await this.findOne({ slug });
+        if (!post) {
+            return slug;   
+        }
+        const slugCount = post.slugCount + 1;
+        await this.updateOne({ slug }, { $inc: { slugCount: 1 } });
+        return `${slug}-${slugCount}`;
     };
 }
 
