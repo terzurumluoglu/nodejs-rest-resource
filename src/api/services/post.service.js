@@ -1,6 +1,7 @@
 const { getDatabase } = require('../config/db');
 const { collections } = require('../../constants');
 const { slugify } = require('../utils/slugify');
+const { generateTagsArray } = require('./tag.service');
 const collection = getDatabase().collection(collections.posts);
 
 class PostService {
@@ -24,9 +25,10 @@ class PostService {
      * @param post
      * @returns MongoDB Response
      */
-    save = async (post) => {
-        const slug = await this.#generateSlug(post.title);
-        post = { ...post, slug, slugCount: 0 };
+    save = async ({ title, content, tags }) => {
+        tags = generateTagsArray(tags);
+        const slug = await this.#generateSlug(title);
+        const post = { title, content, tags, slug, slugCount: 0 };
         return collection.insertOne(post);
     };
 
