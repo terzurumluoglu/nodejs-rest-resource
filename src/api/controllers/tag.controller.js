@@ -1,3 +1,4 @@
+const { asyncHandler } = require('../middleware/asyncHandler');
 const { find } = require('../services/post.service');
 const { generateTagSearchObject } = require('../services/tag.service');
 const ErrorResponse = require('../utils/ErrorResponse');
@@ -5,7 +6,7 @@ const ErrorResponse = require('../utils/ErrorResponse');
 // @desc   Get Posts By Tag
 // @route  GET /tags
 // @access Public
-exports.findPostsByTag = async (req, res, next) => {
+exports.findPostsByTag = asyncHandler(async (req, res, next) => {
     const { params: { tags } } = req;
     const params = generateTagSearchObject(tags);
     const data = await find(params);
@@ -19,4 +20,4 @@ exports.findPostsByTag = async (req, res, next) => {
             data,
         },
     });
-};
+});
