@@ -1,5 +1,6 @@
 const { getDatabase } = require('../config/db');
 const { collections } = require('../../constants');
+const { convertIdToObjectId } = require('../utils/utils');
 const collection = getDatabase().collection(collections.users);
 
 class UserService {
@@ -13,7 +14,11 @@ class UserService {
     }
 
     findOne = async (params) => {
+        params = convertIdToObjectId(params);
         const foundUser = await collection.findOne(params);
+        if (!foundUser) {
+            return;
+        }
         const { resetPasswordKey, resetPasswordKeyExpire, password, ...user } = foundUser;
         return user;
     }

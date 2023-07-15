@@ -23,7 +23,7 @@ exports.findOne = asyncHandler(async (req, res, next) => {
     res.status(200).send({
         success: true,
         result: {
-            message: 'Password changed successfully',
+            message: `One user found with id: ${params._id}`,
             data,
         },
     });
