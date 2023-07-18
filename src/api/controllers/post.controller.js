@@ -1,3 +1,4 @@
+const { asyncHandler } = require('../middleware/asyncHandler');
 const { find, findOne, save, deleteOne, updateOne } = require('../services/post.service');
 const ErrorResponse = require('../utils/ErrorResponse');
 const { convertIdToObjectId } = require('../utils/utils');
@@ -5,7 +6,7 @@ const { convertIdToObjectId } = require('../utils/utils');
 // @desc   Get All Posts
 // @route  GET /posts
 // @access Public
-exports.find = async (req, res, next) => {
+exports.find = asyncHandler(async (req, res, next) => {
     const query = req.query || {};
     const data = await find(query);
     if (data.length === 0) {
@@ -18,12 +19,12 @@ exports.find = async (req, res, next) => {
             data,
         },
     });
-};
+});
 
 // @desc   Get Post By Filter
 // @route  GET /post
 // @access Public
-exports.findOne = async (req, res, next) => {
+exports.findOne = asyncHandler(async (req, res, next) => {
     let { params } = req;
     const data = await findOne(params);
     if (!data) {
@@ -36,12 +37,12 @@ exports.findOne = async (req, res, next) => {
             data,
         },
     });
-};
+});
 
 // @desc   Create a New Post
 // @route  POST /posts
 // @access Public
-exports.save = async (req, res, next) => {
+exports.save = asyncHandler(async (req, res, next) => {
     const { title, content, tags } = req.body;
     const data = await save({ title, content, tags });
     res.status(200).send({
@@ -51,12 +52,12 @@ exports.save = async (req, res, next) => {
             data,
         },
     });
-};
+});
 
 // @desc   Delete a Post
 // @route  DELETE /posts/:_id
 // @access Public
-exports.deleteOne = async (req, res, next) => {
+exports.deleteOne = asyncHandler(async (req, res, next) => {
     let { params } = req;
     params = convertIdToObjectId(params);
     const data = await deleteOne(params);
@@ -67,12 +68,12 @@ exports.deleteOne = async (req, res, next) => {
             data
         },
     });
-};
+});
 
 // @desc   Update a Post
 // @route  PUT /posts/:_id
 // @access Public
-exports.updateOne = async (req, res, next) => {
+exports.updateOne = asyncHandler(async (req, res, next) => {
     const { params } = req;
     const { title, content } = req.body;
     Object.keys(body).forEach(key => !body[key] && delete body[key]);
@@ -84,4 +85,4 @@ exports.updateOne = async (req, res, next) => {
             data
         },
     });
-}
+});

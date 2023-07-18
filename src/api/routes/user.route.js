@@ -5,6 +5,6 @@ const { authorize } = require('../middleware/authorize');
 
 router.route('/').get(authorize, find);
 
-router.route('/:email').get(findOne);
+router.route('/:_id').get(findOne);
 
 module.exports = router;
