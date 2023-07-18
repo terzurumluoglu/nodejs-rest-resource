@@ -75,7 +75,7 @@ exports.deleteOne = asyncHandler(async (req, res, next) => {
 // @access Public
 exports.updateOne = asyncHandler(async (req, res, next) => {
     const { params } = req;
-    const { title, content } = req.body;
+    const { body } = req;
     Object.keys(body).forEach(key => !body[key] && delete body[key]);
     const data = await updateOne(params, { $set: body });
     res.status(200).send({
