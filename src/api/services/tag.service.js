@@ -1,6 +1,15 @@
+const { getDatabase } = require('../config/db');
 const { slugify } = require('../utils/slugify');
+const { collections } = require('../../constants');
+const collection = getDatabase().collection(collections.posts);
 
 class TagService {
+
+    /**
+     * find
+     * @returns Object
+     */
+    find = () => collection.distinct('tags');
 
     /**
      * generateTagsArray
