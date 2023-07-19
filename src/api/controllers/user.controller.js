@@ -16,15 +16,13 @@ exports.find = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.findOne = asyncHandler(async (req, res, next) => {
     const { params } = req;
-    const data = await findOne(params);
-    if (!data) {
+    const result = await findOne(params);
+    if (!result) {
         return next(new ErrorResponse('Not Found', 404));
     }
     res.status(200).send({
         success: true,
-        result: {
-            message: `One user found with id: ${params._id}`,
-            data,
-        },
+        message: `One user found with id: ${params._id}`,
+        result,
     });
 });

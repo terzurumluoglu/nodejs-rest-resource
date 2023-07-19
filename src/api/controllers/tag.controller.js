@@ -8,16 +8,14 @@ const ErrorResponse = require('../utils/ErrorResponse');
 // @route  GET /tags
 // @access Public
 exports.find = asyncHandler(async (req, res, next) => {
-    const data = await tagService.find();
-    if (data.length === 0) {
+    const result = await tagService.find();
+    if (result.length === 0) {
         return next(new ErrorResponse('Not Found', 404));
     }
     res.status(200).send({
         success: true,
-        result: {
-            message: `${data.length} tags be listed`,
-            data,
-        },
+        message: `${result.length} tags be listed`,
+        result,
     });
 });
 
@@ -27,15 +25,13 @@ exports.find = asyncHandler(async (req, res, next) => {
 exports.findPostsByTag = asyncHandler(async (req, res, next) => {
     const { params: { tags } } = req;
     const params = generateTagSearchObject(tags);
-    const data = await postService.find(params);
-    if (data.length === 0) {
+    const result = await postService.find(params);
+    if (result.length === 0) {
         return next(new ErrorResponse('Not Found', 404));
     }
     res.status(200).send({
         success: true,
-        result: {
-            message: `${data.length} posts be listed`,
-            data,
-        },
+        message: `${result.length} posts be listed`,
+        result,
     });
 });
