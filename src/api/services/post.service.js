@@ -28,7 +28,7 @@ class PostService {
     save = async ({ title, content, tags }) => {
         tags = generateTagsArray(tags);
         const slug = await this.#generateSlug(title);
-        const post = { title, content, tags, slug, slugCount: 0 };
+        const post = { title, content, tags, slug, slugCount: 0, creationTime: Date.now() };
         return collection.insertOne(post);
     };
 
