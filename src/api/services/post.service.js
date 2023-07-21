@@ -1,8 +1,8 @@
 const { getDatabase } = require('../config/db');
-const { collections } = require('../../constants');
+const { COLLECTIONS } = require('../../constants');
 const { slugify } = require('../utils/slugify');
 const { generateTagsArray } = require('./tag.service');
-const collection = getDatabase().collection(collections.posts);
+const collection = getDatabase().collection(COLLECTIONS.POSTS);
 
 class PostService {
 

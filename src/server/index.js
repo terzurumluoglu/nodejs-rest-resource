@@ -2,18 +2,18 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const { basePath, environments } = require('../constants');
+const { BASE_PATH, ENVIRONMENTS } = require('../constants');
 const { connectDatabase } = require('../api/config/db');
 
 const server = express();
 
-let environmentPath = `${basePath}environment.env`;
+let environmentPath = `${BASE_PATH}environment.env`;
 
-if (process.env.ENVIRONMENT === environments.production) {
-    environmentPath = `${basePath}environment.prod.env`;
+if (process.env.ENVIRONMENT === ENVIRONMENTS.PRODUCTION) {
+    environmentPath = `${BASE_PATH}environment.prod.env`;
 }
 
-if (process.env.ENVIRONMENT === environments.development) {
+if (process.env.ENVIRONMENT === ENVIRONMENTS.DEVELOPMENT) {
     server.use(cors({ origin: '*', methods: '*' }));
 }
 
