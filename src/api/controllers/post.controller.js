@@ -39,7 +39,7 @@ exports.findOne = asyncHandler(async (req, res, next) => {
 // @route  POST /posts
 // @access Public
 exports.save = asyncHandler(async (req, res, next) => {
-    const { title, content, tags } = req.body;
+    const { title, content, tags = [] } = req.body;
     const result = await save({ title, content, tags });
     res.status(200).send({
         success: true,

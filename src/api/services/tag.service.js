@@ -1,7 +1,7 @@
 const { getDatabase } = require('../config/db');
 const { slugify } = require('../utils/slugify');
-const { collections } = require('../../constants');
-const collection = getDatabase().collection(collections.posts);
+const { COLLECTIONS } = require('../../constants');
+const collection = getDatabase().collection(COLLECTIONS.POSTS);
 
 class TagService {
 

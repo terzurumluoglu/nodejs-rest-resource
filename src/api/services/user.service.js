@@ -1,7 +1,7 @@
 const { getDatabase } = require('../config/db');
-const { collections } = require('../../constants');
+const { COLLECTIONS } = require('../../constants');
 const { convertIdToObjectId } = require('../utils/utils');
-const collection = getDatabase().collection(collections.users);
+const collection = getDatabase().collection(COLLECTIONS.USERS);
 
 class UserService {
 
