@@ -1,13 +1,6 @@
-const basePath = './src/environments/';
+const BASE_PATH = require('./base-path');
+const COLLECTIONS = require('./collection');
+const ENVIRONMENTS = require('./environment');
+const ROLES = require('./roles');
 
-const environments = {
-    development: 'development',
-    production: 'production',
-};
-
-const collections = {
-    users: 'users',
-    posts: 'posts',
-}
-
-module.exports = { basePath, collections, environments };
+module.exports = { BASE_PATH, COLLECTIONS, ENVIRONMENTS, ROLES };
